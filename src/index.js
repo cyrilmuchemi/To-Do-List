@@ -1,59 +1,79 @@
 /* eslint-disable no-unused-vars */
 import _ from 'lodash';
 import './style.css';
+import List from './list.js';
+
+const taskList = new List();
 
 const form = document.querySelector('.form');
 const container = document.querySelector('.listContainer');
 
-class ListObject {
-  constructor(description, completed, index) {
-    this.description = description
-    this.completed = completed
-    this.index = index
-  }
-}
-
-const arr = [];
-
-
-const toDo = () => {
+const addTaskToHTML = (task) => {
   const list = document.createElement('div');
-  const value = document.querySelector('.input').value;
   list.className = 'list';
   list.innerHTML += `
-  <input type= "checkbox" class= "checkbox">
-  <span>${value}</span>
+  <input type= "checkbox" class= "checkbox" ${(task.completed) ? 'checked' : ''}>
+  <span  contenteditable="true" class= "task-description">${task.description}</span>
   <i class="fas fa-ellipsis-v"></i>
   <i class="fas fa-trash"></i>
-  `
+  `;
   container.appendChild(list);
 
-  const checkbox = list.firstChild;
-    checkbox.addEventListener('click', () => {
-      console.log('I am clicked')
-      document.querySelector("body > form > div.listContainer > div > i.fas.fa-ellipsis-v")
-     checkbox.parentElement.classList.toggle('checkedHolder');
-      checkbox.nextElementSibling.classList.toggle('completedList');
-      checkbox.parentElement.lastElementChild.previousElementSibling.classList.toggle('trash-active');
-      checkbox.parentElement.lastElementChild.previousElementSibling.previousElementSibling.classList.toggle('ellipse-disable');
-    })
+  const checkbox = list.firstElementChild;
 
-  const object = new ListObject(value, false, arr.length +1);
-  arr.push(object);
-  localStorage.setItem('list', JSON.stringify(arr));
+  if (task.completed) {
+    checkbox.parentElement.classList.toggle('checkedHolder');
+    checkbox.nextElementSibling.classList.toggle('completedList');
+  }
 
-  const ellipse = checkbox.nextSibling;
-    ellipse.addEventListener('click', () => {
-     console.log('I am clicked')
-     }); 
+  checkbox.nextElementSibling.nextElementSibling.nextElementSibling.addEventListener('mousedown', () => {
+    checkbox.parentElement.remove();
+    taskList.removeTask(task.index);
+  });
+
+  checkbox.addEventListener('click', (event) => {
+    task.completed = event.target.checked;
+    taskList.updateToLocalStorage();
+    checkbox.parentElement.classList.toggle('checkedHolder');
+    checkbox.nextElementSibling.classList.toggle('completedList');
+  });
+
+  const spanElement = checkbox.nextElementSibling;
+
+  spanElement.addEventListener('keyup', (e) => {
+    task.description = e.target.innerText;
+    taskList.updateToLocalStorage();
+  });
+
+  spanElement.addEventListener('focus', (e) => {
+    checkbox.parentElement.classList.toggle('focused');
+    checkbox.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle('trash-active');
+    checkbox.nextElementSibling.nextElementSibling.classList.toggle('ellipse-disable');
+  });
+
+  spanElement.addEventListener('blur', (e) => {
+    checkbox.parentElement.classList.toggle('focused');
+    checkbox.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle('trash-active');
+    checkbox.nextElementSibling.nextElementSibling.classList.toggle('ellipse-disable');
+  });
 };
 
-const clearField = () => {
-  document.querySelector('.input').value = ''
-}
+const addTask = () => {
+  const { value } = document.querySelector('.input');
+  const task = taskList.addTask(value);
+  addTaskToHTML(task);
+};
+
+const updateListUsingLocalStorage = () => {
+  taskList.taskList.forEach((task) => {
+    addTaskToHTML(task);
+  });
+};
+
+updateListUsingLocalStorage();
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  toDo()
-  clearField()
+  e.preventDefault();
+  addTask();
+  form.reset();
 });
