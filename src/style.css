@@ -45,14 +45,25 @@ h1 {
 
 .fa-ellipsis-v {
   margin-left: 190px;
+  cursor: pointer;
 }
 
 span {
   margin-left: 50px;
 }
 
+.ellipse-disable {
+  display: none;
+}
+
 .fa-trash {
   display: none;
+  margin-left: 180px;
+  cursor: pointer;
+}
+
+.trash-active {
+  display: flex;
 }
 
 .completedList {
@@ -60,5 +71,5 @@ span {
 }
 
 .checkedHolder {
-  background-color: gray;
+  background-color: #fff;
 }
