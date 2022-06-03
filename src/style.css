@@ -1,3 +1,17 @@
 body {
-    background-color: bisque;
+  background-color: bisque;
+  display: flex;
+  justify-content: center;
+}
+
+.fa-trash {
+  display: none;
+}
+
+.completedList {
+  text-decoration: line-through;
+}
+
+.checkedHolder {
+  background-color: gray;
 }
