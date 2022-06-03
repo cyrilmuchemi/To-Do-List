@@ -2,39 +2,22 @@
 import _ from 'lodash';
 import './style.css';
 
-const topsection = document.querySelector('.topSec');
-const form = document.querySelector('.myForm');
-const todoList = document.querySelector('.todoList');
-const clearBtn = document.querySelector('.clear');
+const form = document.querySelector('.form');
+const container = document.querySelector('.listContainer');
 
-class Mylist {
-  constructor(descripion, completed, index) {
-    this.descripion = descripion;
-    this.completed = completed;
-    this.index = index;
-  }
-}
-
-const array = [];
-const updateList = () => {
+const arr = [];
+const toDo = () => {
   const list = document.createElement('div');
-  const input = document.querySelector('.input');
-  const { value } = input;
+  const { value } = document.querySelector('.input');
   list.className = 'list';
   list.innerHTML += `
-    <input type= "checkbox" class= "checkbox";
-    <span>${value}</span>
-    <i class="fas fa-ellipsis-v"></i>
-    <i class="fas fa-trash"></i>
-    `;
-  todoList.appendChild(list);
-
-  const checkbox = document.querySelectorAll('.checkbox');
-  checkbox.forEach((check) => {
-    check.addEventListener('click', (e) => {
-      check.parentElement.classList.toggle('checkedHolder');
-    });
-  });
+  <input type= "checkbox" class= "checkbox">
+  <span>${value}</span>
+  <i class="fas fa-ellipsis-v"></i>
+  <i class="fas fa-trash"></i>
+  <hr>
+  `;
+  container.appendChild(list);
 };
 
 const clearField = () => {
@@ -43,6 +26,6 @@ const clearField = () => {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  updateList();
+  toDo();
   clearField();
 });
