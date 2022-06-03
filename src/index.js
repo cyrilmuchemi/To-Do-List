@@ -5,27 +5,37 @@ import './style.css';
 const form = document.querySelector('.form');
 const container = document.querySelector('.listContainer');
 
-const arr = [];
-const toDo = () => {
-  const list = document.createElement('div');
-  const { value } = document.querySelector('.input');
-  list.className = 'list';
-  list.innerHTML += `
+const arr = [
+  {
+    descr: 'Prepare for Coding challenge',
+    completed: true,
+    index: 1,
+  },
+
+  {
+    descr: 'Complete current project',
+    completed: true,
+    index: 2,
+  },
+
+  {
+    descr: 'Watch some anime',
+    completed: false,
+    index: 3,
+  },
+];
+
+const list = [];
+
+for(let i=0; i<arr.length; i++) {
+  list[i] = document.createElement('div');
+  list[i].className = 'list';
+  list[i].innerHTML += `
   <input type= "checkbox" class= "checkbox">
-  <span>${value}</span>
+  <span>${arr[i].descr}</span>
   <i class="fas fa-ellipsis-v"></i>
   <i class="fas fa-trash"></i>
-  <hr>
-  `;
-  container.appendChild(list);
-};
+  `
+  container.appendChild(list[i]);
 
-const clearField = () => {
-  document.querySelector('.input').value = '';
-};
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  toDo();
-  clearField();
-});
+}

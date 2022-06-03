@@ -38,11 +38,12 @@ h1 {
 }
 
 .list {
+  display: flex;
   padding: 10px;
+  border-bottom: 1px solid gray;
 }
 
 .fa-ellipsis-v {
-  position: absolute;
   margin-left: 190px;
 }
 
