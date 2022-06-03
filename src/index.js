@@ -27,7 +27,7 @@ const arr = [
 
 const list = [];
 
-for(let i=0; i<arr.length; i++) {
+for (let i = 0; i < arr.length; i += 1) {
   list[i] = document.createElement('div');
   list[i].className = 'list';
   list[i].innerHTML += `
@@ -35,7 +35,6 @@ for(let i=0; i<arr.length; i++) {
   <span>${arr[i].descr}</span>
   <i class="fas fa-ellipsis-v"></i>
   <i class="fas fa-trash"></i>
-  `
+  `;
   container.appendChild(list[i]);
-
 }
