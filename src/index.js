@@ -25,31 +25,28 @@ const toDo = () => {
   <span>${value}</span>
   <i class="fas fa-ellipsis-v"></i>
   <i class="fas fa-trash"></i>
-  <hr>
   `
   container.appendChild(list);
 
-  const checkbox = document.querySelectorAll('.checkbox');
-  checkbox.forEach(box => {
-    box.addEventListener('click', () => {
-      box.parentElement.classList.toggle('checkedHolder');
-      box.nextElementSibling.classList.toggle('completedList');
-      box.parentElement.lastElementChild.previousElementSibling.classList.toggle('trash-active');
-      box.parentElement.lastElementChild.previousElementSibling.previousElementSibling.classList.toggle('ellipse-disable');
+  const checkbox = list.firstChild;
+    checkbox.addEventListener('click', () => {
+      console.log('I am clicked')
+      document.querySelector("body > form > div.listContainer > div > i.fas.fa-ellipsis-v")
+     checkbox.parentElement.classList.toggle('checkedHolder');
+      checkbox.nextElementSibling.classList.toggle('completedList');
+      checkbox.parentElement.lastElementChild.previousElementSibling.classList.toggle('trash-active');
+      checkbox.parentElement.lastElementChild.previousElementSibling.previousElementSibling.classList.toggle('ellipse-disable');
     })
-  });
 
-  const object = new ListObject(value, false, checkbox.length -1);
+  const object = new ListObject(value, false, arr.length +1);
   arr.push(object);
   localStorage.setItem('list', JSON.stringify(arr));
 
-  const ellipse = document.querySelectorAll('.fa-ellipsis-v');
-  ellipse.forEach(dots => {
-    dots.addEventListener('click', () => {
-     list.contentEditable = true;
-     });  
-    });
-  };
+  const ellipse = checkbox.nextSibling;
+    ellipse.addEventListener('click', () => {
+     console.log('I am clicked')
+     }); 
+};
 
 const clearField = () => {
   document.querySelector('.input').value = ''
