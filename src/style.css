@@ -44,7 +44,8 @@ h1 {
 }
 
 .fa-ellipsis-v {
-  margin-left: 190px;
+  right: 20px;
+  position: absolute;
   cursor: pointer;
 }
 
@@ -63,7 +64,7 @@ span {
 }
 
 .trash-active {
-  display: flex;
+  display: block;
 }
 
 .completedList {

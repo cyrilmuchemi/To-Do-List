@@ -46,19 +46,10 @@ const toDo = () => {
   const ellipse = document.querySelectorAll('.fa-ellipsis-v');
   ellipse.forEach(dots => {
     dots.addEventListener('click', () => {
-      currentTask()
-    })
-  });
-
-  function currentTask(toDo, list) {
-    const editTask = document.createElement('input');
-    editTask.type = 'text';
-    editTask.className = 'input';
-    editTask.value = '';
-
-
-  }
-}
+     list.contentEditable = true;
+     });  
+    });
+  };
 
 const clearField = () => {
   document.querySelector('.input').value = ''
