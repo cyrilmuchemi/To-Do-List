@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.932);
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+.fa-sync-alt {
+  position: absolute;
+  margin-left: 220px;
+}
+
+.form {
+  position: absolute;
+  top: 30%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  background-color: azure;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 10px 10px 0 0;
+  border: none;
+  font-size: 15px;
+  font-family: cursive;
+}
+
+.listContainer {
+  padding: 10px;
+}
+
+.list {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.fa-ellipsis-v {
+  margin-left: 190px;
+}
+
+span {
+  margin-left: 50px;
+}
+
+.fa-trash {
+  display: none;
+}
+
+.completedList {
+  text-decoration: line-through;
+}
+
+.checkedHolder {
+  background-color: gray;
+}
