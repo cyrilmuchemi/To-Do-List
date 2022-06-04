@@ -33,26 +33,30 @@ h1 {
   font-family: cursive;
 }
 
-.listContainer {
-  padding: 10px;
-}
-
 .list {
   display: flex;
-  padding: 10px;
+  align-items: center;
   border-bottom: 1px solid gray;
 }
 
 .fa-ellipsis-v {
-  margin-left: 190px;
+  padding: 16px;
+  margin-left: auto;
+  cursor: pointer;
 }
 
-span {
-  margin-left: 50px;
+.ellipse-disable {
+  display: none;
 }
 
 .fa-trash {
   display: none;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.trash-active {
+  display: block;
 }
 
 .completedList {
@@ -60,5 +64,36 @@ span {
 }
 
 .checkedHolder {
-  background-color: gray;
+  background-color: #fff;
+}
+
+.task-description {
+  width: 84%;
+}
+
+span {
+  padding: 16px 0;
+  outline: none;
+}
+
+.focused {
+  background-color: bisque;
+}
+
+input[type="checkbox" i] {
+  height: 16px;
+  width: 16px;
+  margin: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 2px solid #c1c1c3;
+  appearance: none;
+}
+
+input:checked {
+  background-image: url(./images/bigtick.svg);
+  background-size: 100% 100%;
+  width: 15px;
+  height: 15px;
+  border: none;
 }

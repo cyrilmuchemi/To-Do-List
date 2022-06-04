@@ -1,40 +1,79 @@
 /* eslint-disable no-unused-vars */
 import _ from 'lodash';
 import './style.css';
+import List from './list.js';
+
+const taskList = new List();
 
 const form = document.querySelector('.form');
 const container = document.querySelector('.listContainer');
 
-const arr = [
-  {
-    descr: 'Prepare for Coding challenge',
-    completed: true,
-    index: 1,
-  },
-
-  {
-    descr: 'Complete current project',
-    completed: true,
-    index: 2,
-  },
-
-  {
-    descr: 'Watch some anime',
-    completed: false,
-    index: 3,
-  },
-];
-
-const list = [];
-
-for (let i = 0; i < arr.length; i += 1) {
-  list[i] = document.createElement('div');
-  list[i].className = 'list';
-  list[i].innerHTML += `
-  <input type= "checkbox" class= "checkbox">
-  <span>${arr[i].descr}</span>
+const addTaskToHTML = (task) => {
+  const list = document.createElement('div');
+  list.className = 'list';
+  list.innerHTML += `
+  <input type= "checkbox" class= "checkbox" ${(task.completed) ? 'checked' : ''}>
+  <span  contenteditable="true" class= "task-description">${task.description}</span>
   <i class="fas fa-ellipsis-v"></i>
   <i class="fas fa-trash"></i>
   `;
-  container.appendChild(list[i]);
-}
+  container.appendChild(list);
+
+  const checkbox = list.firstElementChild;
+
+  if (task.completed) {
+    checkbox.parentElement.classList.toggle('checkedHolder');
+    checkbox.nextElementSibling.classList.toggle('completedList');
+  }
+
+  checkbox.nextElementSibling.nextElementSibling.nextElementSibling.addEventListener('mousedown', () => {
+    checkbox.parentElement.remove();
+    taskList.removeTask(task.index);
+  });
+
+  checkbox.addEventListener('click', (event) => {
+    task.completed = event.target.checked;
+    taskList.updateToLocalStorage();
+    checkbox.parentElement.classList.toggle('checkedHolder');
+    checkbox.nextElementSibling.classList.toggle('completedList');
+  });
+
+  const spanElement = checkbox.nextElementSibling;
+
+  spanElement.addEventListener('keyup', (e) => {
+    task.description = e.target.innerText;
+    taskList.updateToLocalStorage();
+  });
+
+  spanElement.addEventListener('focus', (e) => {
+    checkbox.parentElement.classList.toggle('focused');
+    checkbox.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle('trash-active');
+    checkbox.nextElementSibling.nextElementSibling.classList.toggle('ellipse-disable');
+  });
+
+  spanElement.addEventListener('blur', (e) => {
+    checkbox.parentElement.classList.toggle('focused');
+    checkbox.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle('trash-active');
+    checkbox.nextElementSibling.nextElementSibling.classList.toggle('ellipse-disable');
+  });
+};
+
+const addTask = () => {
+  const { value } = document.querySelector('.input');
+  const task = taskList.addTask(value);
+  addTaskToHTML(task);
+};
+
+const updateListUsingLocalStorage = () => {
+  taskList.taskList.forEach((task) => {
+    addTaskToHTML(task);
+  });
+};
+
+updateListUsingLocalStorage();
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  addTask();
+  form.reset();
+});
