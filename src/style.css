@@ -76,6 +76,21 @@ span {
   outline: none;
 }
 
+.clearbutton {
+  border: none;
+  cursor: pointer;
+  margin-left: 100px;
+  color: gray;
+  background-color: azure;
+  font-size: 16px;
+  padding: 16px;
+  text-decoration: underline;
+}
+
+.clearbutton:hover {
+  color: black;
+}
+
 .focused {
   background-color: bisque;
 }
