@@ -78,15 +78,15 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
-
 const clearChecked = () => {
- let checkboxElements = document.querySelectorAll('.checkbox');
- let filteredArray = Array.from(checkboxElements).filter(checkboxElement => (checkboxElement.checked === true))
- filteredArray.forEach(element => element.parentElement.remove());
-}
+  const checkboxElements = document.querySelectorAll('.checkbox');
+  const filteredArray = Array.from(checkboxElements)
+    .filter((checkboxElement) => (checkboxElement.checked === true));
+  filteredArray.forEach((element) => element.parentElement.remove());
+};
 
-const clearBtn = document.createElement('button')
-form.appendChild(clearBtn)
+const clearBtn = document.createElement('button');
+form.appendChild(clearBtn);
 clearBtn.type = 'button';
 clearBtn.textContent = 'Clear all completed';
 clearBtn.className = 'clearbutton';
@@ -95,4 +95,4 @@ clearBtn.addEventListener('click', (e) => {
   clearChecked();
   taskList.clearCompletedTasks();
   form.reset();
-})
+});

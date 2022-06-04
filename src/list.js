@@ -30,8 +30,8 @@ export default class List {
     }
 
     clearCompletedTasks = () => {
-     this.taskList = this.taskList.filter(task => (task.completed === false));
-     this.updateIndex();
-     this.updateToLocalStorage();
+      this.taskList = this.taskList.filter((task) => (task.completed === false));
+      this.updateIndex();
+      this.updateToLocalStorage();
     }
 }
