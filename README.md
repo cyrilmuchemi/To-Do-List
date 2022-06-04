@@ -11,32 +11,20 @@
 - CSS
 - JavaScript
 
-## Live Demo (if available)
+## Live Demo
 
 [Live Demo Link](https://cyrilmuchemi.github.io/To-Do-List/)
 
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-### Setup
-
 ### Install
+Download this repository to your personal computer using git clone
 
 ### Usage
-
-### Run tests
-
-### Deployment
-
-
+Run the index.html file in your favorite browser
 
 ## Authors
 
