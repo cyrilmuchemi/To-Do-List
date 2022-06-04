@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import _ from 'lodash';
+import _, { forEach } from 'lodash';
 import './style.css';
 import List from './list.js';
 
@@ -77,3 +77,22 @@ form.addEventListener('submit', (e) => {
   addTask();
   form.reset();
 });
+
+
+const clearChecked = () => {
+ let checkboxElements = document.querySelectorAll('.checkbox');
+ let filteredArray = Array.from(checkboxElements).filter(checkboxElement => (checkboxElement.checked === true))
+ filteredArray.forEach(element => element.parentElement.remove());
+}
+
+const clearBtn = document.createElement('button')
+form.appendChild(clearBtn)
+clearBtn.type = 'button';
+clearBtn.textContent = 'Clear all completed';
+clearBtn.className = 'clearbutton';
+clearBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  clearChecked();
+  taskList.clearCompletedTasks();
+  form.reset();
+})
