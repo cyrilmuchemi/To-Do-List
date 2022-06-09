@@ -4,7 +4,7 @@ import _, { forEach } from 'lodash';
 // import './style.css';
 import List from './list.js';
 
-export const taskList = new List();
+const taskList = new List();
 
 const form = document.querySelector('.form');
 const container = document.querySelector('.listContainer');
@@ -98,3 +98,5 @@ clearBtn.addEventListener('click', (e) => {
   taskList.clearCompletedTasks();
   form.reset();
 });
+
+export default taskList;
