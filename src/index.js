@@ -96,3 +96,5 @@ clearBtn.addEventListener('click', (e) => {
   taskList.clearCompletedTasks();
   form.reset();
 });
+
+module.exports = addTask;
