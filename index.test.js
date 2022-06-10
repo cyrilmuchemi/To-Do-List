@@ -37,4 +37,22 @@ describe('To-Do-List Context', () => {
       expect(Store.taskList[0].description).not.toBe(stash.description);
     });
   });
+  describe('Test update task', () => {
+    test('with description', async () => {
+      document.querySelector('.input').value = 'value';
+      document.forms[0].submit();
+      document.querySelector('.input').value = 'newVal';
+      document.forms[0].submit();
+      document.querySelector('.input').value = 'anotherVal';
+      document.forms[0].submit();
+
+      const stash = Store.taskList[0];
+      const { length } = Store.taskList;
+
+      document.querySelector('.fa-trash').dispatchEvent(new Event('mousedown'));
+
+      expect(Store.taskList.length).toBe(length - 1);
+      expect(Store.taskList[0].description).not.toBe(stash.description);
+    });
+  });
 });
