@@ -50,7 +50,6 @@ describe('To-Do-List Context', () => {
   });
   describe('Test update task', () => {
     test('with description', async () => {
-      
       expect(Store.taskList.length).toBe(0);
       expect(listDivContainer.hasChildNodes()).toBeFalsy();
 
