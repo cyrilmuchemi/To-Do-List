@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
+
 import _, { forEach } from 'lodash';
-import './style.css';
+// import './style.css';
 import List from './list.js';
 
 const taskList = new List();
@@ -58,6 +59,7 @@ const addTaskToHTML = (task) => {
   });
 };
 
+// EDITED THE ORIGINAL LINE
 const addTask = () => {
   const { value } = document.querySelector('.input');
   const task = taskList.addTask(value);
@@ -96,3 +98,5 @@ clearBtn.addEventListener('click', (e) => {
   taskList.clearCompletedTasks();
   form.reset();
 });
+
+export default taskList;
